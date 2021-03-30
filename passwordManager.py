@@ -2,8 +2,8 @@
 #creates and displays passwords
 
 #variables and lists
-accountsList = [["testa","aa","aaa"], ["testb","bb","bbb"]]
 masterAccountsList = [["test", "12345"], ["test2", "123456"]]
+accountDetailsDict = {"test":[["testa","aa","aaa"], ["testb","bb","bbb"]], "test2": [['test1','11','111'], ['test2','22','222'],['master','test2','123456']]}
 
 #main
 print("Hi, this program will allow you to craate, store, and view usernames and passwords you have registered. \nYou must be 13 or older to use this program.")
@@ -22,6 +22,7 @@ while True:
             addMasterUsername = input("What is the username of this account? ")
             addMasterPassword = input("What is the password of this account? ")
             masterAccountsList.append([addMasterUsername, addMasterPassword])
+            accountDetailsDict[addMasterUsername] = []
             print("Account Created!")
     elif optionsOne == "2":
         MasterUsername = input("Username: ")
@@ -40,11 +41,11 @@ while True:
                         addUsername = input('Please enter the username of this account: ')
                         addPassword = input('Please enter the password of this account: ')
                         addPurpose = input('What are these account details for?')
-                        accountsList.append([addPurpose, addUsername, addPassword])
+                        accountDetailsDict[MasterUsername].append([addPurpose, addUsername, addPassword])
                     elif optionsTwo == '2':
                         print('Here are the account details you have stored: ')
-                        for i in accountsList:
-                            print("{}\nUsername: {}\nPassword: {}".format(i[0], i[1], i[2]))
+                        for info in accountDetailsDict[MasterUsername]:
+                            print("{}\nUsername: {}\nPassword: {}".format(info[0], info[1], info[2]))
                     elif optionsTwo == '3':
                         print("This option is still in development.")
                         continue
