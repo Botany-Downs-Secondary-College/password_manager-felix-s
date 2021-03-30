@@ -3,7 +3,10 @@
 
 #variables and lists
 masterAccountsList = [["test", "12345"], ["test2", "123456"]]
-accountDetailsDict = {"test":[["testa","aa","aaa"], ["testb","bb","bbb"]], "test2": [['test1','11','111'], ['test2','22','222'],['master','test2','123456']]}
+accountDetailsDict = {"test":{"testa":["aa","aaa"], "testb":["bb","bbb"]}, "test2": [['test1','11','111'], ['test2','22','222'],['master','test2','123456']]}
+
+#test
+
 
 #main
 print("Hi, this program will allow you to craate, store, and view usernames and passwords you have registered. \nYou must be 13 or older to use this program.")
@@ -44,15 +47,23 @@ while True:
                         accountDetailsDict[MasterUsername].append([addPurpose, addUsername, addPassword])
                     elif optionsTwo == '2':
                         print('Here are the account details you have stored: ')
-                        for info in accountDetailsDict[MasterUsername]:
-                            print("{}\nUsername: {}\nPassword: {}".format(info[0], info[1], info[2]))
+                        for infoOne, infoTwo in accountDetailsDict[MasterUsername].items():
+                            print("{}\nUsername: {}\nPassword: {}".format(infoOne, infoTwo[0], infoTwo[1]))
                     elif optionsTwo == '3':
-                        print("This option is still in development.")
-                        continue
-                        print("Name the account you would like to remove.")
-                        for i, val in enumerate(accountsList, start=1):
-                            print(i, ".", val[0])
+                        print("Name the account you would like to remove. Type 'cancel' to exit")
+                        for i, val in enumerate(accountDetailsDict[MasterUsername].keys(), start=1):
+                            print(i,")", val)
                         removeInput = input()
+                        for x in accountDetailsDict[MasterUsername].keys():
+                            if x == removeInput:
+                                del accountDetailsDict[MasterUsername][x]
+                                print('Details deleted successfully!')
+                                break
+                            elif removeInput == "cancel":
+                                continue
+                            else:
+                                print('Those account details do not exist')
+                                break
                     elif optionsTwo == '4':
                         print('bai bai')
                         exit()
@@ -63,7 +74,7 @@ while True:
         else:
             print("Incorrect login details")
 
-    elif optionsOne =="3":
+    elif optionsOne == "3":
         print("bai bai")
         exit()
     else:
