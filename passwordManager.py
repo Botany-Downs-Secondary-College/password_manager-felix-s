@@ -3,13 +3,10 @@
 
 #variables and lists
 masterAccountsList = [["test", "12345"], ["test2", "123456"]]
-accountDetailsDict = {"test":{"testa":["aa","aaa"], "testb":["bb","bbb"]}, "test2": [['test1','11','111'], ['test2','22','222'],['master','test2','123456']]}
-
-#test
-
+accountDetailsDict = {"test":{"testa":["aa","aaa"], "testb":["bb","bbb"]}, "test2":{'t1':['11','111'], 't2':['22','222']}}
 
 #main
-print("Hi, this program will allow you to craate, store, and view usernames and passwords you have registered. \nYou must be 13 or older to use this program.")
+print("Hi, this program will allow you to create, store, and view usernames and passwords you have registered. \nYou must be 13 or older to use this program.")
 while True:
     print("Choose a mode by entering a number: ")
     print("1. Sign up")
@@ -25,7 +22,7 @@ while True:
             addMasterUsername = input("What is the username of this account? ")
             addMasterPassword = input("What is the password of this account? ")
             masterAccountsList.append([addMasterUsername, addMasterPassword])
-            accountDetailsDict[addMasterUsername] = []
+            accountDetailsDict[addMasterUsername] = {}
             print("Account Created!")
     elif optionsOne == "2":
         MasterUsername = input("Username: ")
@@ -44,7 +41,7 @@ while True:
                         addUsername = input('Please enter the username of this account: ')
                         addPassword = input('Please enter the password of this account: ')
                         addPurpose = input('What are these account details for?')
-                        accountDetailsDict[MasterUsername].append([addPurpose, addUsername, addPassword])
+                        accountDetailsDict[MasterUsername][addPurpose] = [addUsername, addPassword]
                     elif optionsTwo == '2':
                         print('Here are the account details you have stored: ')
                         for infoOne, infoTwo in accountDetailsDict[MasterUsername].items():
